@@ -1,0 +1,6 @@
+Estimated Time Spent for each task:
+
+> Setup/Planning - 30 min
+> Front end/GUI - 1 hour
+> Back end - 2 hours
+> Testing/Debugging - 1 hour

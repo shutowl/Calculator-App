@@ -1,0 +1,7 @@
+2/15/22:
+
+All number and operational buttons were working and correctly displayed within an hour
+
+Included a "Clear" button for convenience of resetting the displayed value.
+An "Equal" button was also necessary for confirming two values.
+Also added a display that confirmed which operation was being used.
