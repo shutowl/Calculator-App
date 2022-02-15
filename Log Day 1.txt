@@ -2,6 +2,10 @@
 
 All number and operational buttons were working and correctly displayed within an hour
 
-Included a "Clear" button for convenience of resetting the displayed value.
-An "Equal" button was also necessary for confirming two values.
-Also added a display that confirmed which operation was being used.
+> Included a "Clear" button for convenience of resetting the displayed value.
+> An "Equal" button was also necessary for confirming two values.
+> Also added a display that confirmed which operation was being used
+and a display that shows the last number used/currently being used in the equation.
+> Added project to github for version control among various devices.
+
+> There seems to be an issue when inputting "enter" multiple times however and does not work as intended.

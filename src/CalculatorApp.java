@@ -1,3 +1,6 @@
+
+import java.awt.event.KeyEvent;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,7 +29,6 @@ public class CalculatorApp extends javax.swing.JFrame {
             resultText.setText("" + number);
 
             currentNum = number;
-            operationText.setText("");
             
             newOperation = false;
         }  
@@ -41,6 +43,7 @@ public class CalculatorApp extends javax.swing.JFrame {
     
     private void add(){
         lastNum = currentNum;
+        lastNumText.setText("" + lastNum);
         operation = 1;
         operationText.setText("+");
         newOperation = true;
@@ -48,6 +51,7 @@ public class CalculatorApp extends javax.swing.JFrame {
     
     private void subtract(){
         lastNum = currentNum;
+        lastNumText.setText("" + lastNum);
         operation = 2;
         operationText.setText("-");
         newOperation = true;
@@ -55,6 +59,7 @@ public class CalculatorApp extends javax.swing.JFrame {
     
     private void multiply(){
         lastNum = currentNum;
+        lastNumText.setText("" + lastNum);
         operation = 3;
         operationText.setText("x");
         newOperation = true;
@@ -62,6 +67,7 @@ public class CalculatorApp extends javax.swing.JFrame {
     
     private void divide(){
         lastNum = currentNum;
+        lastNumText.setText("" + lastNum);
         operation = 4;
         operationText.setText("/");
         newOperation = true;
@@ -70,23 +76,19 @@ public class CalculatorApp extends javax.swing.JFrame {
     private void equal(){
         switch(operation){
             case 1: //add
-                lastNum += currentNum;
-                currentNum = lastNum;
+                currentNum = lastNum + currentNum;
                 resultText.setText("" + currentNum);
                 break;
             case 2: //subtract
-                lastNum -= currentNum;
-                currentNum = lastNum;
+                currentNum = lastNum - currentNum;
                 resultText.setText("" + currentNum);
                 break;
             case 3: //multiply
-                lastNum *= currentNum;
-                currentNum = lastNum;
+                currentNum = lastNum * currentNum;
                 resultText.setText("" + currentNum);
                 break;
             case 4: //divide
-                lastNum /= currentNum;
-                currentNum = lastNum;
+                currentNum = lastNum / currentNum;
                 resultText.setText("" + currentNum);
                 break;
         }
@@ -94,9 +96,10 @@ public class CalculatorApp extends javax.swing.JFrame {
     
     private void clear(){
         currentNum = 0;
+        lastNum = 0;
+        lastNumText.setText("");
         resultText.setText("" + currentNum);
     }
-    
     
     
     /**
@@ -126,6 +129,7 @@ public class CalculatorApp extends javax.swing.JFrame {
         equalButton = new javax.swing.JButton();
         clearButton = new javax.swing.JButton();
         operationText = new javax.swing.JTextField();
+        lastNumText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -237,6 +241,11 @@ public class CalculatorApp extends javax.swing.JFrame {
                 button1ActionPerformed(evt);
             }
         });
+        button1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                button1KeyPressed(evt);
+            }
+        });
 
         button2.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
         button2.setText("2");
@@ -265,6 +274,10 @@ public class CalculatorApp extends javax.swing.JFrame {
         operationText.setEditable(false);
         operationText.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
         operationText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        lastNumText.setEditable(false);
+        lastNumText.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
+        lastNumText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,7 +317,8 @@ public class CalculatorApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(button7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(operationText))
+                            .addComponent(operationText)
+                            .addComponent(lastNumText, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(resultText, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -320,9 +334,12 @@ public class CalculatorApp extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(resultText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(operationText, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lastNumText, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(operationText, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,6 +434,12 @@ public class CalculatorApp extends javax.swing.JFrame {
         clear();
     }//GEN-LAST:event_clearButtonActionPerformed
 
+    private void button1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button1KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_1){
+            addDigit(1);
+        }
+    }//GEN-LAST:event_button1KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +490,7 @@ public class CalculatorApp extends javax.swing.JFrame {
     private javax.swing.JButton clearButton;
     private javax.swing.JButton divideButton;
     private javax.swing.JButton equalButton;
+    private javax.swing.JTextField lastNumText;
     private javax.swing.JButton multiplyButton;
     private javax.swing.JTextField operationText;
     private javax.swing.JTextField resultText;
