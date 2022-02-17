@@ -91,11 +91,13 @@ public class CalculatorApp extends javax.swing.JFrame {
                 currentNum = lastNum / currentNum;
                 resultText.setText("" + currentNum);
                 break;
-            case 5: //equal?
-                
+            default:
                 break;
         }
-        operation = 5;
+        operation = 0;
+        lastNum = 0;
+        lastNumText.setText("");
+        operationText.setText("");
     }
     
     private void clear(){
@@ -104,6 +106,27 @@ public class CalculatorApp extends javax.swing.JFrame {
         lastNumText.setText("");
         resultText.setText("" + currentNum);
     }
+    
+    public void keyPressed(KeyEvent e) {
+
+        int keyCode = e.getKeyCode();
+              switch( keyCode ) {
+
+           case KeyEvent.VK_0:
+               addDigit(0);
+               break;
+           case KeyEvent.VK_1:
+               addDigit(1);
+               break;
+           case KeyEvent.VK_2:
+               addDigit(2);
+               break;
+           case KeyEvent.VK_3 :
+               // handle 3 press
+               break;
+           //
+    }
+}
     
     
     /**
@@ -136,6 +159,11 @@ public class CalculatorApp extends javax.swing.JFrame {
         lastNumText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         button3.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
         button3.setText("3");
@@ -439,10 +467,12 @@ public class CalculatorApp extends javax.swing.JFrame {
     }//GEN-LAST:event_clearButtonActionPerformed
 
     private void button1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button1KeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_1){
-            addDigit(1);
-        }
+
     }//GEN-LAST:event_button1KeyPressed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments

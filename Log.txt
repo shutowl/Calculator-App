@@ -8,4 +8,15 @@ All number and operational buttons were working and correctly displayed within a
 and a display that shows the last number used/currently being used in the equation.
 > Added project to github for version control among various devices.
 
-> There seems to be an issue when inputting "enter" multiple times however and does not work as intended.
+> There seems to be an issue when inputting "equal" multiple times however and does not work as intended.
+
+> Time spent: 1h 30m
+
+
+2/17/22:
+
+Used other calculator apps as reference.
+The one I used didn't allow for multiple "Equal" button presses, so I made it
+so mine also doesn't allow for multiple "equal" button presses, which helped fix an issue.
+
+> Time spent: 10m
