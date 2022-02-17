@@ -91,7 +91,11 @@ public class CalculatorApp extends javax.swing.JFrame {
                 currentNum = lastNum / currentNum;
                 resultText.setText("" + currentNum);
                 break;
+            case 5: //equal?
+                
+                break;
         }
+        operation = 5;
     }
     
     private void clear(){
